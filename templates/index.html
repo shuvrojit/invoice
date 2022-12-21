@@ -1,0 +1,13 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="invoice">
+  <a class="row" href="{% url "add-new" %}">
+    <button>ADD A NEW INVOICE</button>
+  </a>
+  <a class="row" href="{% url "history" %}">
+    <button>HISTORY</button>
+  </a>
+</div>
+{% endblock content %}

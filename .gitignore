@@ -1,0 +1,7 @@
+/db.sqlite3
+*~
+data/
+media/
+.pyc
+__pycache__
+
