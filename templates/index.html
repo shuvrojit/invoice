@@ -3,14 +3,11 @@
 
 {% block content %}
 <div class="invoice">
-  <a class="row" href="{% url "add-new" %}">
-    <button>ADD A NEW INVOICE</button>
-  </a>
 <a class="row" href="{% url "products" %}">
     <button>Products</button>
   </a>
 
-  <a class="row" href="{% url "history" %}">
+  <a class="row" href="{% url "sales-report" %}">
     <button>Sales Report</button>
   </a>
 </div>

@@ -4,6 +4,7 @@ from django.db import models
 class ProductModel(models.Model):
     date = models.DateField()
     name = models.CharField(max_length=250, null=True)
+    slug = models.CharField(max_length=250, null=True)
     code = models.CharField(max_length=20)
     price = models.IntegerField()
     available = models.BooleanField(default=True)
@@ -20,21 +21,20 @@ class SizeModel(models.Model):
 
 
 status_choices = [
-    (0, "Pending"),
-    (1, "Delivered"),
-    (2, "Courier"),
-    (3, "Exchange"),
-    (4, "Cancel"),
-    (5, "Return"),
+    ("Pending", "Pending"),
+    ("Delivered", "Delivered"),
+    ("Courier", "Courier"),
+    ("Exchange", "Exchange"),
+    ("Cancel", "Cancel"),
+    ("Return", "Return"),
 ]
 
 courier_choices = [
-    (0, "Pathao"),
-    (1, "RedX"),
+    ("Pathao", "Pathao"),
+    ("RedX", "RedX"),
 ]
 
 class InvoiceModel(models.Model):
-
     date = models.DateField()
     status = models.CharField(max_length=20, choices=status_choices, default="Delivered")
     invoice_no = models.IntegerField()
@@ -43,11 +43,11 @@ class InvoiceModel(models.Model):
     customer_name = models.CharField(max_length=500)
     customer_address = models.CharField(max_length=500)
     customer_mobile = models.IntegerField()
-
+    products = models.ManyToManyField(ProductModel, related_name="products")
     delivary_charge = models.IntegerField()
     courier_charge = models.IntegerField()
     invoice_amount = models.IntegerField()
-    recievable_amount = models.IntegerField(null=True)
+    receivable_amount = models.IntegerField(null=True)
     courier_type = models.CharField(max_length=10, choices=courier_choices, default="Pathao")
     order_by = models.CharField(max_length=250, blank=True)
 

@@ -2,20 +2,46 @@
 {% load static %}
 
 {% block content %}
-  {% for invoice in invoices %}
-<div class="history container">
-  <!-- <p>{{ invoice.invoice_no }}</p> -->
-  <!-- <p>{{ invoice.date }}</p> -->
-  <!-- <p>{{ invoice.customer_name }}</p> -->
-  <!-- <p>{{ invoice.customer_address }}</p> -->
+<div class="row">
+  <p class="col"> date </p>
+  <p class="col"> status </p>
+  <p class="col">  invoice no </p>
+  <p class="col"> parcel id </p>
+  <!-- <p class="col"> product available </p> -->
+  <p class="col"> product Sizes </p>
+<
+{% for invoice in invoices %}
+<div class="row border">
+  <p class="col border">{{ invoice.date }}</p>
+  <p class="col border">{{ invoice.status }}</p>
+  <p class="col border">{{ invoice.invoice_no }}</p>
+  <p class="col border">{{ invoice.parcel_id }}</p>
+  <p class="col border">{{ invoice.customer_name }}</p>
+  <p class="col border">{{ invoice.customer_address }}</p>
+  <p class="col border">{{ invoice.customer_mobile }}</p>
 
-  <!-- <p>{{ invoice.customer_mobile }}</p> -->
-  <!-- <p>{{ invoice.products }}</p> -->
-  <!-- {% for product in products %} -->
-  <!-- <p>{{ product.product_price }} -->
-  <!-- {% endfor %} -->
-  <p>{{ invoice.delivary_charge }}</p>
-  <p>{{ invoice.tax }}</p>
-</div>
+  {% for product in invoice.products.all %}
+  <span class="col">
+
+    <p class="col">{{ product.name }}</p>
+    <p class="col">{{ product.code }}</p>
+    <p class="col">{{ product.price }}</p>
+    <!-- <p class="col">{{ product.available }}</p> -->
+    {% for size in product.sizemodel_set.all %}
+    <span class="col border">
+      <span class="row">
+        <p class="col">{{ size.size }}</p>
+        <p class="col">{{ size.quantity }}</p>
+      </span>
+    </span>
+    {% endfor %}
+  </span>
   {% endfor %}
-{% endblock content %}
+  <p class="col border">{{ invoice.delivary_charge }}</p>
+  <p class="col border">{{ invoice.courier_charge }}</p>
+  <p class="col border">{{ invoice.invoice_amount }}</p>
+  <p class="col border">{{ invoice.receivable_amount }}</p>
+  <p class="col border">{{ invoice.courier_type }}</p>
+  <p class="col border">{{ invoice.order_by }}</p>
+  {% endfor %}
+  {% endblock content %}
