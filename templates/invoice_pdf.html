@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>pdf report</title>
+</head>
+<body>
+  {% block content %}
+<div class="row border">
+  <p class="col border">{{ invoice.date }}</p>
+  <p class="col border">{{ invoice.status }}</p>
+  <p class="col border">{{ invoice.invoice_no }}</p>
+  <p class="col border">{{ invoice.parcel_id }}</p>
+  <p class="col border">{{ invoice.customer_name }}</p>
+  <p class="col border">{{ invoice.customer_address }}</p>
+  <p class="col border">{{ invoice.customer_mobile }}</p>
+
+  {% for product in invoice.products.all %}
+  <span class="col">
+
+    <p class="col">{{ product.name }}</p>
+    <p class="col">{{ product.code }}</p>
+    <p class="col">{{ product.price }}</p>
+    <!-- <p class="col">{{ product.available }}</p> -->
+    {% for size in product.sizemodel_set.all %}
+    <span class="col border">
+      <span class="row">
+        <p class="col">{{ size.size }}</p>
+        <p class="col">{{ size.quantity }}</p>
+      </span>
+    </span>
+    {% endfor %}
+  </span>
+  {% endfor %}
+  <p class="col border">{{ invoice.delivary_charge }}</p>
+  <p class="col border">{{ invoice.courier_charge }}</p>
+  <p class="col border">{{ invoice.invoice_amount }}</p>
+  <p class="col border">{{ invoice.receivable_amount }}</p>
+  <p class="col border">{{ invoice.courier_type }}</p>
+  <p class="col border">{{ invoice.order_by }}</p>
+  {% endblock content %}
+
+</body>
+</html>
