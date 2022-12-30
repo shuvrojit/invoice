@@ -1,0 +1,32 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+ <p class="col"> product date </p>
+  <p class="col"> product name </p>
+  <p class="col"> product code </p>
+  <p class="col"> product price </p>
+  <p class="col"> product available </p>
+  <p class="col"> product Sizes </p>
+</div>
+{% for product in products %}
+
+<div class="row">
+  <p class="col">{{ product.date }}</p>
+  <p class="col">{{ product.name }}</p>
+  <p class="col">{{ product.code }}</p>
+  <p class="col">{{ product.price }}</p>
+  <p class="col">{{ product.available }}</p>
+  {% for size in product.sizemodel_set.all %}
+  <div class="col">
+    <div class="row">
+  <p class="col">{{ size.size }}</p>
+  <p class="col">{{ size.quantity }}</p>
+    </div>
+  <div>
+  {% endfor %}
+</div>
+
+{% endfor %}
+{% endblock content %}

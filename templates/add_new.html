@@ -2,10 +2,86 @@
 {% load static %}
 
 {% block content %}
-<div class="add-invoice">
-  lets' create a invoice
+<div class="add-invoice container">
+  <h2>Create A New Invoice</h2>
+  <form class="row g-3">
+    <div class="row g-3 align-items-center">
+      <div class="col-auto">
+        <label for="date" class="col-form-label">Date:</label>
+      </div>
+      <div class="col-auto">
+        <input type="date" id="date" class="form-control">
+      </div>
+    </div>
 
+    <div class="row g-3 align-items-center">
+      <div class="col-auto">
+        <label for="status" class="col-form-label">status:</label>
+      </div>
+      <div class="col-auto">
+        <select class="form-select">
+          <option selected>Click to select menu</option>
+          <option value="1">Delivered</option>
+          <option value="2">Pending</option>
+          <option value="3">Return</option>
+          <option value="4">Exchange</option>
+          <option value="5">Courier</option>
+          <option value="6">Cancel</option>
+        </select>
+      </div>
+    </div>
 
+    <div class="row g-3 align-items-center">
+      <div class="col-auto">
+        <label for="invoice-no" class="col-form-label">Invoice No.:</label>
+      </div>
+      <div class="col-auto">
+        <input type="text" id="invoice-no" class="form-control">
+      </div>
+    </div>
 
+    <div class="row g-3 align-items-center">
+      <div class="col-auto">
+        <label for="parcel-id" class="col-form-label">Parcel ID:</label>
+      </div>
+      <div class="col-auto">
+        <input type="text" id="parcel-id" class="form-control">
+      </div>
+    </div>
+
+    <div class="row g-3 align-items-center">
+      <div class="col-auto">
+        <label for="customer-name" class="col-form-label">Customer Name:</label>
+      </div>
+      <div class="col-auto">
+        <input type="text" id="customer-name" class="form-control">
+      </div>
+    </div>
+
+    <div class="row g-3 align-items-center">
+      <div class="col-auto">
+        <label for="customer-address" class="col-form-label">Customer Address:</label>
+      </div>
+      <div class="col-auto">
+        <input type="text" id="customer-address" class="form-control">
+      </div>
+    </div>
+
+    <div class="row g-3 align-items-center">
+      <div class="col-auto">
+        <label for="mobile" class="col-form-label">Mobile Number:</label>
+      </div>
+      <div class="col-auto">
+        <input type="number" id="mobile" class="form-control">
+      </div>
+    </div>
+    <div class="items row g-3">
+    <p>Items:</p>
+    </div>
+    <button class="btn add-items">Add items</button>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+  </form>
 </div>
 {% endblock content %}
