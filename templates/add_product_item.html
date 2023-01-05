@@ -1,0 +1,12 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block content %}
+<h1>Add New Product Item</h1>
+<form action="/add-product-item/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock %}

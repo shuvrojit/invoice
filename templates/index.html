@@ -3,15 +3,16 @@
 
 {% block content %}
 <div class="invoice">
-<a class="row" href="{% url "products" %}">
-    <button>Products</button>
-  </a>
-<a class="row" href="{% url "invoice" %}">
-    <button>Invoice</button>
+<a class="row" href="{% url "add-product" %}">
+    <button>Add New Product</button>
   </a>
 
-  <a class="row" href="{% url "sales-report" %}">
-    <button>Sales Report</button>
+<a class="row" href="{% url "add-item" %}">
+    <button>Add New Item</button>
+  </a>
+
+<a class="row" href="{% url "products" %}">
+    <button>Products</button>
   </a>
 </div>
 {% endblock content %}

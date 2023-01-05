@@ -1,20 +1,18 @@
 from django.forms import ModelForm
-from django.conf import settings
-from django.template.loader import get_template
-from xhtml2pdf import pisa
+# from django.conf import settings
+# from django.template.loader import get_template
+# from xhtml2pdf import pisa
+from django import forms
 
-# from .models import InvoiceModel, ProductModel
+from .models import Product, ProductItem, Size
 
-# class InvoiceForm(ModelForm):
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        exclude = ["slug"]
 
-#     class Meta:
-#         model = InvoiceModel
-#         fields = ["invoice_no", "date", "customer_name","customer_address","customer_mobile", "delivary_charge"]
 
-
-# class ProductForm(ModelForm):
-#     class Meta:
-#         model = InvoiceModel
-#         fields = "__all__"
-
-# class PdfForm(ModelForm):
+class ProductItemForm(forms.ModelForm):
+    class Meta:
+        model = ProductItem
+        exclude = ["slug"]

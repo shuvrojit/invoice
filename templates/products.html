@@ -3,21 +3,23 @@
 
 {% block content %}
 <div class="row">
-  <p class="col"> product date </p>
+  <p class="col"> product category </p>
   <p class="col"> product name </p>
+  <p class="col"> product date </p>
   <p class="col"> product code </p>
   <p class="col"> product price </p>
   <!-- <p class="col"> product available </p> -->
   <p class="col"> product Sizes </p>
 </div>
-{% for product in products %}
+{% for product in productitems|dictsortreversed:"date" %}
 
 <div class="row">
+  <p class="col">{{ product.product.category }}</p>
+  <p class="col">{{ product.product }}</p>
   <p class="col">{{ product.date }}</p>
-  <p class="col">{{ product.name }}</p>
   <p class="col">{{ product.code }}</p>
   <p class="col">{{ product.price }}</p>
-  <!-- <p class="col">{{ product.available }}</p> -->
+  <p class="col">{{ product.available }}</p>
   {% for size in product.sizemodel_set.all %}
   <span class="col border">
     <span class="row">
