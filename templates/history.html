@@ -2,35 +2,45 @@
 {% load static %}
 
 {% block content %}
-<div class="row">
-  <p class="col"> date </p>
-  <p class="col"> status </p>
-  <p class="col">  invoice no </p>
-  <p class="col"> parcel id </p>
-  <!-- <p class="col"> product available </p> -->
-  <p class="col"> product Sizes </p>
-<
+<table>
+  <tr>
+  <th class="col border"> Date </th>
+  <th class="col border"> Status </th>
+  <th class="col border"> Invoice NO </th>
+  <th class="col border"> Parcel Id </th>
+  <th class="col border"> Customer Name </th>
+  <th class="col border"> Customer Address </th>
+  <th class="col border"> Customer Mobile </th>
+  <th class="col border"> Items </th>
+  <th class="col border"> Delivery Charge </th>
+  <th class="col border"> Courier Charge </th>
+  <th class="col border"> Invoice Amount </th>
+  <th class="col border"> Recievable Amount </th>
+  <th class="col border"> Courier Type </th>
+  <th class="col border"> Order By </th>
+  </tr>
+
 {% for invoice in invoices %}
-<div class="row border">
-  <p class="col border">{{ invoice.date }}</p>
-  <p class="col border">{{ invoice.status }}</p>
-  <p class="col border">{{ invoice.invoice_no }}</p>
-  <p class="col border">{{ invoice.parcel_id }}</p>
-  <p class="col border">{{ invoice.customer_name }}</p>
-  <p class="col border">{{ invoice.customer_address }}</p>
-  <p class="col border">{{ invoice.customer_mobile }}</p>
+  <tr>
+  <td class="col border">{{ invoice.date }}</td>
+  <td class="col border">{{ invoice.status }}</td>
+  <td class="col border">{{ invoice.invoice_no }}</td>
+  <td class="col border">{{ invoice.parcel_id }}</td>
+  <td class="col border">{{ invoice.customer_name }}</td>
+  <td class="col border">{{ invoice.customer_address }}</td>
+  <td class="col border">{{ invoice.customer_mobile }}</td>
 
+  <td class="col border">
   {% for product in invoice.products.all %}
-  <span class="col">
-
-    <p class="col">{{ product.name }}</p>
-    <p class="col">{{ product.code }}</p>
+    <td class="col">{{ product.name }}</td>
+    <td class="col">{{ product.code }}</td>
+    <div class="row">
     <p class="col">{{ product.price }}</p>
     <!-- <p class="col">{{ product.available }}</p> -->
     {% for size in product.sizemodel_set.all %}
     <span class="col border">
       <span class="row">
-        <p class="col">{{ size.size }}</p>
+        <td class="col">{{ size.size }}</p>
         <p class="col">{{ size.quantity }}</p>
       </span>
     </span>

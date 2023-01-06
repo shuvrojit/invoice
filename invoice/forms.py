@@ -5,7 +5,7 @@ from django.forms import ModelForm
 from django import forms
 from django.forms.models import inlineformset_factory
 
-from .models import Product, ProductItem, Size
+from .models import Product, ProductItem, Size, Order
 
 class ProductForm(forms.ModelForm):
     class Meta:
@@ -16,7 +16,7 @@ class ProductForm(forms.ModelForm):
 class ProductItemForm(forms.ModelForm):
     class Meta:
         model = ProductItem
-        exclude = ["slug"]
+        exclude = ["date", "slug"]
 
 SizeFormSet = inlineformset_factory(
     ProductItem,
@@ -25,3 +25,8 @@ SizeFormSet = inlineformset_factory(
     fields=("size", "quantity"),
     extra=6,
 )
+
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        exclude = ["date", "slug"]

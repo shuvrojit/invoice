@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView, ListView
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from .models import Category, Product, ProductItem
+from .models import Category, Product, ProductItem, Order
 from .forms import ProductForm, ProductItemForm, SizeFormSet
 
 class HomePageView(TemplateView):
@@ -46,3 +46,8 @@ class ProductsPageView(ListView):
     model = ProductItem
     context_object_name = "productitems"
     template_name = "products.html"
+
+class OrderView(ListView):
+    model = Order
+    context_object_name = "invoices"
+    template_name = "history.html"
