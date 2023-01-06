@@ -20,7 +20,7 @@
   <p class="col">{{ product.code }}</p>
   <p class="col">{{ product.price }}</p>
   <p class="col">{{ product.available }}</p>
-  {% for size in product.sizemodel_set.all %}
+  {% for size in product.size_set.all %}
   <span class="col border">
     <span class="row">
     <p class="col">{{ size.size }}</p>
