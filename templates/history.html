@@ -4,54 +4,56 @@
 {% block content %}
 <table>
   <tr>
-  <th class="col border"> Date </th>
-  <th class="col border"> Status </th>
-  <th class="col border"> Invoice NO </th>
-  <th class="col border"> Parcel Id </th>
-  <th class="col border"> Customer Name </th>
-  <th class="col border"> Customer Address </th>
-  <th class="col border"> Customer Mobile </th>
-  <th class="col border"> Items </th>
-  <th class="col border"> Delivery Charge </th>
-  <th class="col border"> Courier Charge </th>
-  <th class="col border"> Invoice Amount </th>
-  <th class="col border"> Recievable Amount </th>
-  <th class="col border"> Courier Type </th>
-  <th class="col border"> Order By </th>
+  <th class="border"> Date </th>
+  <th class="border"> Status </th>
+  <th class="border"> Invoice NO </th>
+  <th class=" border"> Parcel Id </th>
+  <th class=" border"> Customer Name </th>
+  <th class=" border"> Customer Address </th>
+  <th class=" border"> Customer Mobile </th>
+  <th class=" border"> Items </th>
+  <th class=" border"> Delivery Charge </th>
+  <th class=" border"> Courier Charge </th>
+  <th class=" border"> Invoice Amount </th>
+  <th class=" border"> Recievable Amount </th>
+  <th class=" border"> Courier Type </th>
+  <th class=" border"> Order By </th>
   </tr>
 
 {% for invoice in invoices %}
   <tr>
-  <td class="col border">{{ invoice.date }}</td>
-  <td class="col border">{{ invoice.status }}</td>
-  <td class="col border">{{ invoice.invoice_no }}</td>
-  <td class="col border">{{ invoice.parcel_id }}</td>
-  <td class="col border">{{ invoice.customer_name }}</td>
-  <td class="col border">{{ invoice.customer_address }}</td>
-  <td class="col border">{{ invoice.customer_mobile }}</td>
+  <td class=" border">{{ invoice.created_on }}</td>
+  <td class=" border">{{ invoice.status }}</td>
+  <td class=" border">{{ invoice.invoice_no }}</td>
+  <td class=" border">{{ invoice.parcel_id }}</td>
+  <td class=" border">{{ invoice.customer.name}}</td>
+  <td class=" border">{{ invoice.customer.address }}</td>
+  <td class=" border">{{ invoice.customer.mobile }}</td>
 
-  <td class="col border">
+  <td class=" border">
+    <table>
   {% for product in invoice.products.all %}
-    <td class="col">{{ product.name }}</td>
-    <td class="col">{{ product.code }}</td>
-    <div class="row">
-    <p class="col">{{ product.price }}</p>
+  <tr class="border-big">
+    <td class="border">{{ product.name }}</td>
+    <td class="border">{{ product.code }}</td>
+    <td class="border">{{ product.price }}</td>
     <!-- <p class="col">{{ product.available }}</p> -->
-    {% for size in product.sizemodel_set.all %}
-    <span class="col border">
-      <span class="row">
-        <td class="col">{{ size.size }}</p>
-        <p class="col">{{ size.quantity }}</p>
-      </span>
-    </span>
+    {% for size in product.size_set.all %}
+        <td class="col">{{ size.size }}</td>
+        <td class="col">{{ size.quantity }}</td>
     {% endfor %}
-  </span>
+</tr>
   {% endfor %}
-  <p class="col border">{{ invoice.delivary_charge }}</p>
-  <p class="col border">{{ invoice.courier_charge }}</p>
-  <p class="col border">{{ invoice.invoice_amount }}</p>
-  <p class="col border">{{ invoice.receivable_amount }}</p>
-  <p class="col border">{{ invoice.courier_type }}</p>
-  <p class="col border">{{ invoice.order_by }}</p>
+
+  </table>
+  </td>
+  <td class="col border">{{ invoice.delivery_charge }}</td>
+  <td class="col border">{{ invoice.courier_charge }}</td>
+  <td class="col border">{{ invoice.invoice_amount }}</td>
+  <td class="col border">{{ invoice.receivable_amount }}</td>
+  <td class="col border">{{ invoice.courier_type }}</td>
+  <td class="col border">{{ invoice.order_by }}</td>
+  </tr>
   {% endfor %}
+</table>
   {% endblock content %}

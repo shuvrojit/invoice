@@ -2,41 +2,62 @@
 {% load static %}
 
 {% block content %}
-<table>
-<tr>
-  <th class="border ">Category</th>
-  <th class="border ">Name</th>
-  <th class="border ">Image</th>
-  <th class="border ">Description</th>
-  <th class="border ">Date</th>
-  <th class="border ">Code</th>
-  <th class="border ">Price</th>
-  <th class="border ">Available</th>
-  <th class="border ">Sizes</th>
-</tr>
+<div class="container">
+<div class="row row-cols-1 row-cols-md-3 g-4">
+
 {% for product in productitems|dictsortreversed:"date" %}
-
-<tr class="border-big ">
-  <td class="border ">{{ product.product.category }}</td>
-  <td class="border ">{{ product.product }}</td>
-  <td class="border "><img src="{{ product.image.url }}" alt="{{ prdouct.name }}" width="50px" height="50px" /></td>
-  <td class="border ">{{ product.description }}</td>
-  <td class="border ">{{ product.date }}</td>
-  <td class="border ">{{ product.code }}</td>
-  <td class="border ">{{ product.price }}</td>
-  <td class="border ">{{ product.available }}</td>
-  <td class="border ">
-  {% for size in product.size_set.all %}
-  <table>
-    <tr class="border ">
-    <td>{{ size.size }} </td>
-    <td> - {{ size.quantity }}</td>
-    </tr>
-  </table>
-  {% endfor %}
-  </td>
-  </tr>
+<div class="col">
+  <a style="text-decoration: none;" href="#">
+<div class="card" style="width: 20rem;">
+  <img height="230px" src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+  <div class="card-body">
+    <h5 class="card-title">{{ product.name }}</h5>
+    <h6 class="card-text">{{ product.code }}</h6>
+    <p class="card-text">{{ product.description }}</p>
+    <a href="#" class="btn btn-primary">Add To Cart</a>
+  </div>
+</div>
+  </a>
+</div>
 {% endfor %}
+</div>
+</div>
 
-</table>
+<!-- <table> -->
+<!-- <tr> -->
+<!--   <th class="border ">Category</th> -->
+<!--   <th class="border ">Name</th> -->
+<!--   <th class="border ">Image</th> -->
+<!--   <th class="border ">Description</th> -->
+<!--   <th class="border ">Date</th> -->
+<!--   <th class="border ">Code</th> -->
+<!--   <th class="border ">Price</th> -->
+<!--   <th class="border ">Available</th> -->
+<!--   <th class="border ">Sizes</th> -->
+<!-- </tr> -->
+<!-- {% for product in productitems|dictsortreversed:"date" %} -->
+
+<!-- <tr class="border-big "> -->
+<!--   <td class="border ">{{ product.product.category }}</td> -->
+<!--   <td class="border ">{{ product.product }}</td> -->
+<!--   <td class="border "><img src="{{ product.image.url }}" alt="{{ prdouct.name }}" width="50px" height="50px" /></td> -->
+<!--   <td class="border ">{{ product.description }}</td> -->
+<!--   <td class="border ">{{ product.date }}</td> -->
+<!--   <td class="border ">{{ product.code }}</td> -->
+<!--   <td class="border ">{{ product.price }}</td> -->
+<!--   <td class="border ">{{ product.available }}</td> -->
+<!--   <td class="border "> -->
+<!--   {% for size in product.size_set.all %} -->
+<!--   <table> -->
+<!--     <tr class="border "> -->
+<!--     <td>{{ size.size }} </td> -->
+<!--     <td> - {{ size.quantity }}</td> -->
+<!--     </tr> -->
+<!--   </table> -->
+<!--   {% endfor %} -->
+<!--   </td> -->
+<!--   </tr> -->
+<!-- {% endfor %} -->
+
+<!-- </table> -->
 {% endblock content %}
